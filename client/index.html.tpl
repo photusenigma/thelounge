@@ -22,7 +22,7 @@
 	<link rel="shortcut icon" href="img/favicon-normal.ico" data-other="img/favicon-alerted.ico" data-toggled="false" id="favicon" type="image/x-icon">
 
 	<!-- Safari pinned tab icon -->
-	<link rel="mask-icon" href="img/logo.svg" color="<%- themeColor %>">
+	<link rel="mask-icon" href="img/favicon-transparent-bg.svg" color="#415363">
 
 	<link rel="manifest" href="manifest.json">
 
