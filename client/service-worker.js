@@ -32,7 +32,7 @@ function showNotification(event, payload) {
 
 				return self.registration.showNotification(payload.title, {
 					tag: `chan-${payload.chanId}`,
-					badge: "img/favicon-alerted.svg",
+					badge: "img/favicon-alerted-transparent-bg.svg",
 					icon: "img/favicon-grey-bg.svg",
 					body: payload.body,
 					timestamp: payload.timestamp,

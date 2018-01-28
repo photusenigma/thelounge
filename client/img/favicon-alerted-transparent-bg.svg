@@ -3,12 +3,10 @@
 <svg version="1.1" id="Livello_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill:#415364;}
 	.st1{fill:#FFFFFF;}
 	.st2{fill:#FF9E18;}
 </style>
 <g>
-	<path class="st0" d="M60,64H4c-2.2,0-4-1.8-4-4V4c0-2.2,1.8-4,4-4h56c2.2,0,4,1.8,4,4v56C64,62.2,62.2,64,60,64z"/>
 	<circle class="st1" cx="40.8" cy="32" r="3"/>
 	<circle class="st1" cx="31.3" cy="32" r="3"/>
 	<g>

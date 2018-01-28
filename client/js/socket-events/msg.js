@@ -187,7 +187,7 @@ function notifyMessage(targetId, channel, msg) {
 					} else {
 						const notify = new Notification(title, {
 							tag: `chan-${targetId}`,
-							badge: "img/favicon-alerted.svg",
+							badge: "img/favicon-alerted-transparent-bg.svg",
 							icon: "img/favicon-grey-bg.svg",
 							body: body,
 							timestamp: timestamp,
