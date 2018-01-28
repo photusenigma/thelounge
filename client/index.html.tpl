@@ -18,7 +18,7 @@
 
 	<title>The Lounge</title>
 
-	<link rel="shortcut icon" href="img/favicon.png" data-other="img/favicon-notification.png" data-toggled="false" id="favicon">
+	<link rel="shortcut icon" href="img/favicon-normal-64x64px.png" data-other="img/favicon-alerted-64x64px.png" data-toggled="false" id="favicon">
 	<link rel="apple-touch-icon" sizes="120x120" href="img/apple-touch-icon-120x120.png">
 	<link rel="mask-icon" href="img/logo.svg" color="<%- themeColor %>">
 	<link rel="manifest" href="manifest.json">
