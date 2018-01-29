@@ -35,6 +35,12 @@
 	<!-- iPhone X, iPhone 8 Plus, iPhone 7 Plus, iPhone 6s Plus, iPhone 6 Plus -->
 	<link rel="apple-touch-icon" sizes="180x180" href="img/logo-grey-bg-180x180px.png">
 
+	<!-- Windows 8/10 - Edge tiles -->
+	<meta name="application-name" content="The Lounge">
+	<meta name="msapplication-TileColor" content="<%- themeColor %>">
+	<meta name="msapplication-square70x70logo" content="img/logo-grey-bg-120x120px.png">
+	<meta name="msapplication-square150x150logo" content="img/logo-grey-bg-152x152px.png">
+
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 	<meta name="mobile-web-app-capable" content="yes">
