@@ -15,7 +15,7 @@ describe("Image storage", function() {
 	const correctImageHash = crypto.createHash("sha256").update(fs.readFileSync(testImagePath)).digest("hex");
 	const correctImageURL = `storage/${correctImageHash.substring(0, 2)}/${correctImageHash.substring(2, 4)}/${correctImageHash.substring(4)}.png`;
 
-	const testSvgPath = path.resolve(__dirname, "../../client/img/logo.svg"); // FIXME: Use either `logo-grey-bg.svg` when we have it, or `logo-vertical-grey-bg.svg` when https://github.com/thelounge/lounge/pull/2003 gets merged
+	const testSvgPath = path.resolve(__dirname, "../../client/img/logo-vertical-transparent-bg.svg"); // FIXME: Use either `logo-grey-bg.svg` when we have it, or `logo-vertical-grey-bg.svg` when https://github.com/thelounge/lounge/pull/2003 gets merged
 	const correctSvgHash = crypto.createHash("sha256").update(fs.readFileSync(testSvgPath)).digest("hex");
 	const correctSvgURL = `storage/${correctSvgHash.substring(0, 2)}/${correctSvgHash.substring(2, 4)}/${correctSvgHash.substring(4)}.svg`;
 
