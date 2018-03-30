@@ -23,7 +23,7 @@ body {
 }
 
 body {
-	background: #455164;
+	background: #415364;
 	color: #222;
 	font: 16px -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	margin: 0;
@@ -401,9 +401,8 @@ kbd {
 	color: #cfcfcf;
 	content: "\f002"; /* http://fontawesome.io/icon/search/ */
 	position: absolute;
-	right: 18px;
-	font-size: 14px;
-	line-height: 50px;
+	right: 13px;
+	line-height: 45px;
 }
 
 #settings .extra-experimental::before {
@@ -432,7 +431,6 @@ kbd {
 #viewport {
 	display: flex;
 	height: 100%;
-	overflow: hidden;
 }
 
 #windows {
@@ -454,7 +452,7 @@ kbd {
 #viewport .lt,
 #viewport .rt,
 #chat button.menu {
-	color: #ccc;
+	color: #607992;
 	display: flex;
 	font-size: 14px;
 	line-height: 1;
@@ -511,7 +509,7 @@ kbd {
 
 #sidebar .chan,
 #sidebar .empty {
-	color: #99a2b4;
+	color: #b7c5d1;
 	font-size: 14px;
 }
 
@@ -530,8 +528,18 @@ kbd {
 	color: #fff;
 }
 
+#sidebar button:hover,
+#sidebar .chan:hover {
+	background-color: rgba(48, 62, 74, 0.5); /* #303e4a x 50% alpha */
+}
+
+#sidebar .active,
+#sidebar .active:hover {
+	background-color: #303e4a;
+}
+
 #sidebar .networks {
-	padding-top: 20px;
+	padding-top: 10px;
 	touch-action: pan-y;
 	flex-grow: 1;
 	overflow: auto;
@@ -545,7 +553,7 @@ kbd {
 #sidebar .network,
 #sidebar .network-placeholder {
 	position: relative;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
 	touch-action: pan-y;
 }
 
@@ -560,7 +568,6 @@ kbd {
 #sidebar .chan-placeholder {
 	display: flex;
 	padding: 8px 14px;
-	transition: color 0.2s;
 	width: 100%;
 }
 
@@ -747,13 +754,11 @@ kbd {
 }
 
 #footer {
-	background: rgba(0, 0, 0, 0.06);
 	height: 45px;
 	font-size: 14px;
-	line-height: 45px;
-	text-align: center;
-	width: 220px;
 	flex-shrink: 0;
+	display: flex;
+	justify-content: center;
 }
 
 #footer button.active {
@@ -761,11 +766,12 @@ kbd {
 }
 
 #footer .icon {
-	color: #9ca5b4;
+	color: #b7c5d1;
 	display: inline-block;
-	line-height: 34px;
-	padding: 0 12px;
-	transition: color 0.2s;
+	width: 45px;
+	height: 100%;
+	border-radius: 5px;
+	transition: color 0.2s, background-color 0.2s;
 }
 
 #footer .icon:hover {
@@ -878,8 +884,8 @@ kbd {
 
 #windows .header {
 	border-bottom: 1px solid #e7e7e7;
-	line-height: 48px;
-	height: 48px;
+	line-height: 45px;
+	height: 45px;
 	padding: 0 6px;
 	display: flex;
 	flex-shrink: 0;
@@ -1448,7 +1454,7 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 
 #chat .userlist .count {
 	background: #fafafa;
-	height: 48px;
+	height: 45px;
 	flex-shrink: 0;
 	position: relative;
 }
@@ -1459,7 +1465,7 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 	background: none;
 	font: inherit;
 	outline: 0;
-	padding: 18px 16px;
+	padding: 13px;
 	width: 100%;
 }
 
@@ -1800,17 +1806,15 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 }
 
 #form {
-	background: #eee;
-	border-top: 1px solid #ddd;
 	flex: 0 0 auto;
-	padding: 5px;
 }
 
 #windows #form .input {
-	border: 1px solid #ddd;
-	border-radius: 2px;
+	border: 0;
+	border-top: 1px solid #e7e7e7;
+	border-radius: 0;
 	margin: 0;
-	padding: 0;
+	padding: 6px;
 	background: white;
 	display: flex;
 	align-items: flex-end;
@@ -1866,7 +1870,7 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 }
 
 #form #submit {
-	color: #9ca5b4;
+	color: #607992;
 	font-size: 14px;
 	height: 32px;
 	transition: opacity 0.2s;
@@ -2232,7 +2236,7 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 	}
 
 	#sidebar {
-		background: #455164;
+		background: #415364;
 		height: 100%;
 		position: absolute;
 		left: -220px;
