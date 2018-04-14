@@ -180,7 +180,7 @@ kbd {
 }
 
 .container {
-	margin: 20px auto;
+	margin-bottom: 20px;
 	max-width: 480px;
 	touch-action: pan-y;
 }
@@ -898,13 +898,16 @@ kbd {
 }
 
 #windows .header {
-	border-bottom: 1px solid #e7e7e7;
 	line-height: 45px;
 	height: 45px;
 	padding: 0 6px;
 	display: flex;
 	flex-shrink: 0;
 	overflow: hidden;
+}
+
+#windows #chat .header {
+	border-bottom: 1px solid #e7e7e7;
 }
 
 #windows .header .title {
@@ -2226,10 +2229,6 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 		opacity: 0;
 	}
 
-	.container {
-		margin-top: 60px !important;
-	}
-
 	#sidebar button,
 	#sidebar .chan,
 	#sidebar .empty,
@@ -2330,10 +2329,6 @@ part/quit messages where we don't load previews (adds a blank line otherwise) */
 }
 
 @media (max-width: 479px) {
-	.container {
-		margin: 10px 0 !important;
-	}
-
 	#sign-in .btn {
 		width: 100%;
 	}
