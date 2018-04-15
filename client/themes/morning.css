@@ -107,16 +107,6 @@ body {
 	color: #f3f3f3;
 }
 
-#chat .show-more-button {
-	background: #28333d;
-	border-color: #28333d;
-	color: #f3f3f3;
-}
-
-#chat .show-more-button:hover {
-	color: #fff;
-}
-
 #windows .window h2 {
 	color: #b7c5d1;
 }
