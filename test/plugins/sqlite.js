@@ -5,7 +5,7 @@ const path = require("path");
 const expect = require("chai").expect;
 const Msg = require("../../src/models/msg");
 const Helper = require("../../src/helper");
-const MessageStorage = require("../../src/plugins/sqlite.js");
+const MessageStorage = require("../../src/plugins/messageStorage/sqlite.js");
 
 describe("SQLite Message Storage", function() {
 	const expectedPath = path.join(Helper.getHomePath(), "logs", "testUser.sqlite3");

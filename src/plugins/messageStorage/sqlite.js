@@ -3,8 +3,8 @@
 const path = require("path");
 const fsextra = require("fs-extra");
 const sqlite3 = require("sqlite3");
-const Helper = require("../helper");
-const Msg = require("../models/msg");
+const Helper = require("../../helper");
+const Msg = require("../../models/msg");
 
 const currentSchemaVersion = 1520239200;
 
@@ -138,6 +138,10 @@ class MessageStorage {
 				}
 			));
 		});
+	}
+
+	canProvideMessages() {
+		return this.isEnabled;
 	}
 }
 
