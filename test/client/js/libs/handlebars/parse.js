@@ -332,20 +332,16 @@ describe("parse Handlebars helper", () => {
 		const testCases = [{
 			input: "\x02irc\x0f://\x1dfreenode.net\x0f/\x034,8thelounge",
 			expected:
-				'<a href="irc://freenode.net/thelounge" target="_blank" rel="noopener">' +
-					'<span class="irc-bold">irc</span>' +
-					"://" +
-					'<span class="irc-italic">freenode.net</span>' +
-					"/" +
-					'<span class="irc-fg4 irc-bg8">thelounge</span>' +
-				"</a>",
+				'<a href="irc://freenode.net/thelounge" target="_blank" rel="noopener" class="irc-bold">irc</a>' +
+				'<a href="irc://freenode.net/thelounge" target="_blank" rel="noopener">://</a>' +
+				'<a href="irc://freenode.net/thelounge" target="_blank" rel="noopener" class="irc-italic">freenode.net</a>' +
+				'<a href="irc://freenode.net/thelounge" target="_blank" rel="noopener">/</a>' +
+				'<a href="irc://freenode.net/thelounge" target="_blank" rel="noopener" class="irc-fg4 irc-bg8">thelounge</a>',
 		}, {
 			input: "\x02#\x038,9thelounge",
 			expected:
-				'<span class="inline-channel" role="button" tabindex="0" data-chan="#thelounge">' +
-					'<span class="irc-bold">#</span>' +
-					'<span class="irc-bold irc-fg8 irc-bg9">thelounge</span>' +
-				"</span>",
+				'<span class="inline-channel irc-bold" role="button" tabindex="0" data-chan="#thelounge">#</span>' +
+				'<span class="inline-channel irc-bold irc-fg8 irc-bg9" role="button" tabindex="0" data-chan="#thelounge">thelounge</span>',
 		}];
 
 		const actual = testCases.map((testCase) => parse(testCase.input));
@@ -371,7 +367,7 @@ describe("parse Handlebars helper", () => {
 		// FIXME: These multiple `span`s should be optimized into a single one. See https://github.com/thelounge/thelounge/issues/1783
 		name: "wrapped in style",
 		input: "Super \x034💚 green!",
-		expected: 'Super <span class="emoji" role="img" aria-label="Emoji: green heart" title="green heart"><span class="irc-fg4">💚</span></span><span class="irc-fg4"> green!</span>',
+		expected: 'Super <span class="emoji irc-fg4" role="img" aria-label="Emoji: green heart" title="green heart">💚</span><span class="irc-fg4"> green!</span>',
 	}, {
 		name: "wrapped in URLs",
 		input: "https://i.❤️.thelounge.chat",
@@ -392,10 +388,7 @@ describe("parse Handlebars helper", () => {
 		const testCases = [{
 			input: 'test \x0312#\x0312\x0312"te\x0312st\x0312\x0312\x0312\x0312\x0312\x0312\x0312\x0312\x0312\x0312\x0312a',
 			expected:
-			"test " +
-				'<span class="inline-channel" role="button" tabindex="0" data-chan="#&quot;testa">' +
-				'<span class="irc-fg12">#&quot;testa</span>' +
-			"</span>",
+			'test <span class="inline-channel irc-fg12" role="button" tabindex="0" data-chan="#&quot;testa">#&quot;testa</span>',
 		}];
 
 		const actual = testCases.map((testCase) => parse(testCase.input));

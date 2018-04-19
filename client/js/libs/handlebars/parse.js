@@ -12,7 +12,8 @@ const colorClass = require("./colorClass");
 const emojiMap = require("../fullnamemap.json");
 
 // Create an HTML `span` with styling information for a given fragment
-function createFragment(fragment) {
+function createFragment(fragment, inputAttributes) {
+	const attributes = Object.assign({}, inputAttributes);
 	const classes = [];
 
 	if (fragment.bold) {
@@ -43,24 +44,43 @@ function createFragment(fragment) {
 		classes.push("irc-monospace");
 	}
 
-	let attributes = classes.length ? ` class="${classes.join(" ")}"` : "";
-	const escapedText = Handlebars.Utils.escapeExpression(fragment.text);
+	if (classes.length) {
+		const classesString = classes.join(" ");
+
+		attributes.class = attributes.class ? `${attributes.class} ${classesString}` : classesString;
+	}
 
 	if (fragment.hexColor) {
-		attributes += ` style="color:#${fragment.hexColor}`;
+		attributes.style = `color:#${fragment.hexColor}`;
 
 		if (fragment.hexBgColor) {
-			attributes += `;background-color:#${fragment.hexBgColor}`;
+			attributes.style += `;background-color:#${fragment.hexBgColor}`;
+		}
+	}
+
+	let tag = "span";
+	let attributesString = "";
+
+	for (const key in attributes) {
+		if (!attributes.hasOwnProperty(key)) {
+			continue;
 		}
 
-		attributes += '"';
+		if (key === "tag") {
+			tag = attributes[key];
+			continue;
+		}
+
+		attributesString += ` ${key}="${attributes[key]}"`;
 	}
 
-	if (attributes.length) {
-		return `<span${attributes}>${escapedText}</span>`;
+	const escapedText = Handlebars.Utils.escapeExpression(fragment.text);
+
+	if (attributesString.length === 0) {
+		return escapedText;
 	}
 
-	return escapedText;
+	return `<${tag}${attributesString}>${escapedText}</${tag}>`;
 }
 
 // Transform an IRC message potentially filled with styling control codes, URLs,
@@ -104,27 +124,35 @@ module.exports = function parse(text, users) {
 	// Merge the styling information with the channels / URLs / nicks / text objects and
 	// generate HTML strings with the resulting fragments
 	return merge(parts, styleFragments).map((textPart) => {
-		// Create HTML strings with styling information
-		const fragments = textPart.fragments.map(createFragment).join("");
+		const attributes = {};
 
 		// Wrap these potentially styled fragments with links and channel buttons
 		if (textPart.link) {
-			const escapedLink = Handlebars.Utils.escapeExpression(textPart.link);
-			return `<a href="${escapedLink}" target="_blank" rel="noopener">${fragments}</a>`;
+			attributes.href = Handlebars.Utils.escapeExpression(textPart.link);
+			attributes.target = "_blank";
+			attributes.rel = "noopener";
+			attributes.tag = "a";
 		} else if (textPart.channel) {
-			const escapedChannel = Handlebars.Utils.escapeExpression(textPart.channel);
-			return `<span class="inline-channel" role="button" tabindex="0" data-chan="${escapedChannel}">${fragments}</span>`;
+			attributes.class = "inline-channel";
+			attributes.role = "button";
+			attributes.tabindex = "0";
+			attributes["data-chan"] = Handlebars.Utils.escapeExpression(textPart.channel);
 		} else if (textPart.emoji) {
-			if (!emojiMap[textPart.emoji]) {
-				return `<span class="emoji" role="img">${fragments}</span>`;
-			}
+			attributes.class = "emoji";
+			attributes.role = "img";
 
-			return `<span class="emoji" role="img" aria-label="Emoji: ${emojiMap[textPart.emoji]}" title="${emojiMap[textPart.emoji]}">${fragments}</span>`;
+			if (emojiMap[textPart.emoji]) {
+				const emoji = emojiMap[textPart.emoji];
+				attributes["aria-label"] = `Emoji: ${emoji}`;
+				attributes.title = emoji;
+			}
 		} else if (textPart.nick) {
-			const nick = Handlebars.Utils.escapeExpression(textPart.nick);
-			return `<span role="button" class="user ${colorClass(textPart.nick)}" data-name="${nick}">${fragments}</span>`;
+			attributes.role = "button";
+			attributes.class = `user ${colorClass(textPart.nick)}`;
+			attributes["data-name"] = Handlebars.Utils.escapeExpression(textPart.nick);
 		}
 
-		return fragments;
+		// Create HTML strings with styling information
+		return textPart.fragments.map((fragment) => createFragment(fragment, attributes)).join("");
 	}).join("");
 };
