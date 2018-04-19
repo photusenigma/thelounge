@@ -112,7 +112,7 @@ module.exports = function parse(text, users) {
 
 	// Merge the styling information with the channels / URLs / nicks / text objects and
 	// generate HTML strings with the resulting fragments
-	return merge(parts, styleFragments).map((textPart) => {
+	return merge(parts, styleFragments, cleanText).map((textPart) => {
 		const attributes = {};
 
 		// Wrap these potentially styled fragments with links and channel buttons
