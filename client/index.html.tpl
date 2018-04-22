@@ -78,10 +78,7 @@
 			</article>
 		</div>
 
-		<div id="context-menu-container">
-			<ul id="context-menu"></ul>
-		</div>
-
+		<div id="context-menu-container"></div>
 		<div id="image-viewer"></div>
 
 		<script src="js/bundle.vendor.js"></script>
