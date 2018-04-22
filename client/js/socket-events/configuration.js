@@ -84,4 +84,36 @@ socket.on("configuration", function(data) {
 				$(this).data("lastvalue", nick);
 			});
 	});
+
+	if ($(document.body).hasClass("public")) {
+		const params = new URLSearchParams(document.location.search);
+
+		for (let [key, value] of params) {
+			// Support `channels` as a compatibility alias with other clients
+			if (key === "channels") {
+				key = "join";
+			}
+
+			if (!data.defaults.hasOwnProperty(key)) {
+				continue;
+			}
+
+			if (key === "join") {
+				value = value.split(",").map((chan) => {
+					if (!chan.match(/^[#&!+]/)) {
+						return `#${chan}`;
+					}
+
+					return chan;
+				}).join(", ");
+			}
+
+			// Override server provided defaults with parameters passed in the URL if they match the data type
+			switch (typeof data.defaults[key]) {
+			case "boolean": data.defaults[key] = value === "1" || value === "true"; break;
+			case "number": data.defaults[key] = Number(value); break;
+			case "string": data.defaults[key] = String(value); break;
+			}
+		}
+	}
 });
