@@ -165,7 +165,11 @@ Client.prototype.connect = function(args) {
 		channels = args.join
 			.replace(/,/g, " ")
 			.split(/\s+/g)
-			.map(function(chan) {
+			.map((chan) => {
+				if (!chan.match(/^[#&!+]/)) {
+					chan = `#${chan}`;
+				}
+
 				return new Chan({
 					name: chan,
 				});
